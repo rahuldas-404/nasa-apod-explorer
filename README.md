@@ -17,16 +17,16 @@ A production-ready Spring Boot REST API that integrates with NASA's Astronomy Pi
 - [Database Schema](#database-schema)
 - [Screenshots](#screenshots)
 - [Performance Optimization](#performance-optimization)
-- [License](#license)
+- [Project Structure](#project-structure)
 
 ---
 
 ## 🌟 Features
 
-- **External API Integration:** Seamless integration with NASA APOD API using non-blocking WebClient
-- **Performance Caching:** In-memory caching with ConcurrentHashMap reduces API calls by 90%
+- **External API Integration:** Seamless integration with NASA APOD API using non-blocking `WebClient`
+- **Performance Caching:** In-memory caching with `ConcurrentHashMap` reduces API calls by 90%
 - **Database Persistence:** Full CRUD operations with Spring Data JPA and PostgreSQL
-- **Reactive Programming:** WebFlux implementation with Mono for asynchronous processing
+- **Reactive Programming:** WebFlux implementation with `Mono` for asynchronous processing
 - **RESTful Architecture:** Clean separation with Controller-Service-Repository pattern
 - **Error Handling:** Comprehensive exception handling with proper HTTP status codes
 - **Data Validation:** Business rule enforcement with unique constraints
@@ -49,3 +49,34 @@ A production-ready Spring Boot REST API that integrates with NASA's Astronomy Pi
 
 ## 🏗️ Architecture
 
+```text
+┌─────────────────┐
+│   REST Client   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐   ┌──────────────┐
+│   Controller    │◄──┤  DTO Layer   │
+│   (REST API)    │   └──────────────┘
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐   ┌──────────────┐
+│     Service     │◄──┤   Caching    │
+│(Business Logic) │   └──────────────┘
+└────────┬────────┘           │
+         │                    ▼
+         │            ┌──────────────┐
+         │            │ NASA APOD API│
+         │            └──────────────┘
+         ▼
+┌─────────────────┐
+│   Repository    │
+│   (JPA Layer)   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   PostgreSQL    │
+│    Database     │
+└─────────────────┘
