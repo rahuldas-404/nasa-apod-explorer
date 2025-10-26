@@ -13,11 +13,6 @@ A production-ready Spring Boot REST API that integrates with NASA's Astronomy Pi
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [API Endpoints](#api-endpoints)
-- [Getting Started](#getting-started)
-- [Database Schema](#database-schema)
-- [Screenshots](#screenshots)
-- [Performance Optimization](#performance-optimization)
-- [Project Structure](#project-structure)
 
 ---
 
@@ -80,3 +75,23 @@ A production-ready Spring Boot REST API that integrates with NASA's Astronomy Pi
 │   PostgreSQL    │
 │    Database     │
 └─────────────────┘
+
+## 📡 API Endpoints
+
+### NASA APOD Endpoints
+
+| Method | Endpoint | Description | Example |
+|--------|----------|-------------|---------|
+| `GET` | `/api/apod/today` | Get today's APOD from NASA | `curl http://localhost:8080/api/apod/today` |
+| `GET` | `/api/apod/{date}` | Get APOD by date (YYYY-MM-DD) | `curl http://localhost:8080/api/apod/2025-09-15` |
+
+### Favorites Endpoints
+
+| Method | Endpoint | Description | Status Code |
+|--------|----------|-------------|-------------|
+| `GET` | `/api/apod/favorites` | Get all saved favorites | 200 OK |
+| `POST` | `/api/apod/favorites` | Add new favorite | 201 Created |
+| `GET` | `/api/apod/favorites/{id}` | Get favorite by ID | 200 OK / 404 Not Found |
+| `DELETE` | `/api/apod/favorites/{id}` | Delete favorite | 204 No Content |
+
+---
